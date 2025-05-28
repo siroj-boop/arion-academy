@@ -1,102 +1,130 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Arion Academy</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arion Profile</title>
   <style>
     body {
-      background-color: #111;
-      color: #fff;
-      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 20px;
     }
-
-    input, button {
-      display: block;
-      margin: 15px auto;
-      padding: 10px;
+    h2 {
+      margin-top: 30px;
+    }
+    .input-group {
+      margin: 20px auto;
       width: 80%;
-      font-size: 16px;
+      max-width: 400px;
+      position: relative;
+    }
+    input[type="text"], input[type="date"] {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid cyan;
+      background: #222;
+      color: white;
       border-radius: 10px;
-      border: none;
-      background-color: #222;
-      color: #fff;
-    }
-
-    input:focus, button:hover {
+      font-size: 16px;
       outline: none;
-      box-shadow: 0 0 10px #0ff;
-    }
-
-    .glow-button {
-      background: #0ff;
-      color: #000;
-      font-weight: bold;
-      box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+      box-shadow: 0 0 15px cyan;
       transition: 0.3s;
     }
-
-    .glow-button:hover {
-      background: #00faff;
-      box-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+    input[type="file"] {
+      display: none;
     }
-
-    img {
+    .file-label {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: cyan;
+      color: black;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px cyan;
+      transition: 0.3s;
+    }
+    .file-label:hover {
+      background: #00e0e0;
+    }
+    .preview {
+      margin-top: 20px;
       width: 100px;
       height: 100px;
-      object-fit: cover;
       border-radius: 50%;
-      margin: 10px auto;
-      display: block;
+      object-fit: cover;
+      border: 2px solid cyan;
+      box-shadow: 0 0 10px cyan;
+    }
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: cyan;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+      box-shadow: 0 0 20px cyan;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00e0e0;
     }
   </style>
 </head>
 <body>
-  <h1>Добро пожаловать в ARION</h1>
+
+  <h2>Добро пожаловать в ARION</h2>
   <p>Заполни данные, чтобы начать</p>
 
-  <input type="text" id="name" placeholder="Имя">
-  <input type="text" id="surname" placeholder="Фамилия">
-  <input type="date" id="dob" placeholder="Дата рождения">
-  <input type="file" id="photoInput" accept="image/*">
-  <img id="photoPreview" src="#" alt="Фото" style="display:none;">
+  <div class="input-group">
+    <input type="text" id="firstname" placeholder="Имя">
+  </div>
+  <div class="input-group">
+    <input type="text" id="lastname" placeholder="Фамилия">
+  </div>
+  <div class="input-group">
+    <input type="date" id="birthdate">
+  </div>
 
-  <button class="glow-button" onclick="saveData()">Сохранить</button>
+  <label for="photo" class="file-label">Выбрать фото</label>
+  <input type="file" id="photo" accept="image/*" onchange="previewImage(event)">
+  <div id="photo-preview"></div>
+
+  <button onclick="saveProfile()">Сохранить</button>
 
   <script>
-    function saveData() {
-      const name = document.getElementById('name').value;
-      const surname = document.getElementById('surname').value;
-      const dob = document.getElementById('dob').value;
-      const photo = document.getElementById('photoInput').files[0];
-
-      localStorage.setItem('name', name);
-      localStorage.setItem('surname', surname);
-      localStorage.setItem('dob', dob);
-
-      if (photo) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          localStorage.setItem('photo', e.target.result);
-          document.getElementById('photoPreview').src = e.target.result;
-          document.getElementById('photoPreview').style.display = 'block';
-        }
-        reader.readAsDataURL(photo);
-      }
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function(){
+        const img = document.createElement("img");
+        img.src = reader.result;
+        img.className = "preview";
+        const preview = document.getElementById("photo-preview");
+        preview.innerHTML = "";
+        preview.appendChild(img);
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
 
-    // Загрузка при открытии
-    window.onload = function () {
-      document.getElementById('name').value = localStorage.getItem('name') || '';
-      document.getElementById('surname').value = localStorage.getItem('surname') || '';
-      document.getElementById('dob').value = localStorage.getItem('dob') || '';
-      const photo = localStorage.getItem('photo');
-      if (photo) {
-        document.getElementById('photoPreview').src = photo;
-        document.getElementById('photoPreview').style.display = 'block';
-      }
+    function saveProfile() {
+      const user = {
+        firstname: document.getElementById('firstname').value,
+        lastname: document.getElementById('lastname').value,
+        birthdate: document.getElementById('birthdate').value,
+        photo: document.querySelector('.preview')?.src || ""
+      };
+      localStorage.setItem("arion_user", JSON.stringify(user));
+      window.location.href = "/webapp"; // путь на главную после сохранения
     }
   </script>
+
 </body>
 </html>
