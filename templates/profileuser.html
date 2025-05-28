@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://i.gifer.com/7VE.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-top: 30px;
+      text-shadow: 0 0 15px #00ccff;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.5);
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 0 0 20px #00ccff;
+    }
+
+    .progress {
+      background: #555;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: #00ccff;
+      width: 70%;
+      animation: grow 2s ease-in-out;
+    }
+
+    @keyframes grow {
+      from { width: 0; }
+      to { width: 70%; }
+    }
+
+    .btn {
+      background-color: transparent;
+      border: 2px solid #00ccff;
+      color: #00ccff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #00ccff;
+    }
+
+    .btn:hover {
+      background-color: #00ccff;
+      color: black;
+      box-shadow: 0 0 25px #00ccff;
+    }
+
+    .back {
+      border-color: #ff0066;
+      color: #ff0066;
+      box-shadow: 0 0 15px #ff0066;
+    }
+
+    .back:hover {
+      background-color: #ff0066;
+      color: white;
+      box-shadow: 0 0 25px #ff0066;
+    }
+  </style>
+</head>
+<body>
+  <h1>👤 Личный кабинет</h1>
+
+  <div class="card">
+    <h3>📘 Пройдено уроков: <span id="lessons">14</span></h3>
+    <h3>📈 Прогресс знаний</h3>
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="location.href='/wallet'">💰 Кошелёк</button>
+  <br>
+  <button class="btn back" onclick="history.back()">← Назад</button>
+</body>
+</html>

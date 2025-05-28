@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Обучение</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://i.gifer.com/7VE.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-shadow: 0 0 15px #00ffe1;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      background-color: transparent;
+      border: 2px solid #00ffe1;
+      color: #00ffe1;
+      padding: 12px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 400px;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #00ffe1;
+    }
+
+    .btn:hover {
+      background-color: #00ffe1;
+      color: black;
+      box-shadow: 0 0 25px #00ffe1;
+    }
+
+    .back {
+      margin-top: 30px;
+      background-color: transparent;
+      border: 2px solid #ff0066;
+      color: #ff0066;
+      box-shadow: 0 0 15px #ff0066;
+    }
+
+    .back:hover {
+      background-color: #ff0066;
+      color: white;
+      box-shadow: 0 0 25px #ff0066;
+    }
+  </style>
+</head>
+<body>
+  <h1>Разделы обучения</h1>
+  <button class="btn">Цифровые Валюты</button>
+  <button class="btn">Финансовая Грамотность</button>
+  <button class="btn">Образование</button>
+  <button class="btn">Машиностроение</button>
+  <button class="btn">Программирование</button>
+  <button class="btn">Мобилография</button>
+
+  <button class="btn back" onclick="history.back()">← Назад</button>
+</body>
+</html>

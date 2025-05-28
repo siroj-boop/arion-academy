@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>ARION - Главное меню</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1471044343412-cd89e1138f26') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 40px;
+      font-size: 28px;
+      text-shadow: 0 0 10px #00fff7;
+    }
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+    .glow-btn {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #000;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .glow-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать в ARION</h1>
+  <div class="btn-container">
+    <button class="glow-btn" onclick="location.href='/education'">📘 Обучение</button>
+    <button class="glow-btn" onclick="location.href='/settings'">⚙️ Настройки</button>
+    <button class="glow-btn" onclick="location.href='/profile'">👤 Личный кабинет</button>
+    <button class="glow-btn" onclick="location.href='/logout'">🚪 Выход</button>
+  </div>
+</body>
+</html>
