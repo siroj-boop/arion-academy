@@ -1,22 +1,20 @@
-from aiogram import Bot, Dispatcher, types
-from aiogram.types import WebAppInfo, ReplyKeyboardMarkup, KeyboardButton
-from aiogram.utils import executor
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-API_TOKEN = '8009596428:AAEGYJild4leGK688ceb482CHR1fb82Lr7U'
+# 🔒 Вставь сюда свой токен БЕЗОПАСНО
+TOKEN = "8009596428:AAEGYJild4leGK688ceb482CHR1fb82Lr7U"
 
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
-
-@dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add(
-        KeyboardButton(
-            text="🚀 Открыть Академию",
-            web_app=WebAppInfo(url="https://arionacademy.vercel.app")  # сюда позже вставим ссылку
-        )
-    )
-    await message.answer("Добро пожаловать в ARION ACADEMY!", reply_markup=keyboard)
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [InlineKeyboardButton(
+            text="Arion Academy",
+            web_app=WebAppInfo(url="https://arion-academy.onrender.com/webapp")
+        )]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text("Привет 👋 Добро пожаловать в ARION! Нажми кнопку ниже, чтобы открыть WebApp:", reply_markup=reply_markup)
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.run_polling()
