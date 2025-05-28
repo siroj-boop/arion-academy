@@ -1,49 +1,34 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return render_template('index.html')  # если index.html — твоя главная
+def start():
+    return redirect(url_for('form'))
 
-@app.route('/webapp')  # 👈 вот это добавь
-def webapp():
-    return render_template('profile.html')  # или webapp.html, как хочешь
-
-if __name__ == '__main__':
-    app.run(debug=True)
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template('index.html')  # Стартовая страница
-
-@app.route('/webapp')
-def webapp():
-    return render_template('profileuser.html')  # Первая форма
+@app.route('/form')
+def form():
+    return render_template('profileuser.html')  # первая форма с именем и фото
 
 @app.route('/main')
-def main_menu():
-    return render_template('main_menu.html')
+def main():
+    return render_template('main_menu.html')  # главное меню
 
 @app.route('/education')
 def education():
-    return render_template('education.html')
+    return render_template('education.html')  # раздел с обучением
 
 @app.route('/settings')
 def settings():
-    return render_template('settings.html')
+    return render_template('settings.html')  # настройки профиля
 
 @app.route('/wallet')
 def wallet():
-    return render_template('wallet.html')
+    return render_template('wallet.html')  # кошелек
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html')  # аналитика/личный кабинет
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
