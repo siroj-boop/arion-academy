@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ARION WebApp</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      background-color: #101010;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #00ffaa;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #00ffaa;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать в WebApp ARION</h1>
+  <p>Твой путь к миллиону начинается отсюда 🚀</p>
+  <button onclick="sendToBot()">Начать</button>
+
+  <script>
+    function sendToBot() {
+      Telegram.WebApp.sendData("✅ Пользователь открыл WebApp ARION");
+      Telegram.WebApp.close();
+    }
+  </script>
+</body>
+</html>
